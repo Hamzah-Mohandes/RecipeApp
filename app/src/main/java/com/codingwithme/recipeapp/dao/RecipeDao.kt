@@ -24,5 +24,5 @@ interface RecipeDao {
     suspend fun clearDb()
 
     @Query("SELECT * FROM MealItems WHERE categoryName = :categoryName ORDER BY id DESC")
-    suspend fun getSpecificMealList(categoryName:String) : List<MealsItems>
+    suspend fun getSpecificMealList(categoryName: String) : List<MealsItems>
 }

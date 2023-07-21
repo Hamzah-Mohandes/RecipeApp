@@ -15,7 +15,8 @@
         android:requestLegacyExternalStorage="true"
         android:theme="@style/Theme.RecipeApp">
         <activity android:name=".SplashActivity"
-            android:screenOrientation="locked">
+            android:screenOrientation="locked"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
