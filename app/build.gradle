@@ -11,6 +11,7 @@ plugins {
 
     // kotlin-kapt: Plugin for Kotlin annotation processing (required for Room database)
     id 'kotlin-kapt'
+
 }
 
 // Android configuration section

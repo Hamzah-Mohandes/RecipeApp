@@ -10,26 +10,30 @@ import com.codingwithme.recipeapp.entities.*
 import com.codingwithme.recipeapp.entities.converter.CategoryListConverter
 import com.codingwithme.recipeapp.entities.converter.MealListConverter
 
-@Database(entities = [Recipes::class,CategoryItems::class,Category::class,Meal::class,MealsItems::class],version = 1,exportSchema = false)
-@TypeConverters(CategoryListConverter::class,MealListConverter::class)
-abstract class RecipeDatabase: RoomDatabase() {
+// Definition der Room-Datenbank mit den Entitätsklassen und der Datenbankversion.
+@Database(entities = [Recipes::class, CategoryItems::class, Category::class, Meal::class, MealsItems::class], version = 1, exportSchema = false)
+@TypeConverters(CategoryListConverter::class, MealListConverter::class)
+abstract class RecipeDatabase : RoomDatabase() {
 
-    companion object{
+    companion object {
+        // Singleton-Instanz der Datenbank, um sicherzustellen, dass nur eine Instanz erstellt wird.
+        private var recipesDatabase: RecipeDatabase? = null
 
-        var recipesDatabase:RecipeDatabase? = null
-
+        // Methode zum Abrufen der Datenbankinstanz mit dem App-Kontext.
         @Synchronized
-        fun getDatabase(context: Context): RecipeDatabase{
-            if (recipesDatabase == null){
+        fun getDatabase(context: Context): RecipeDatabase {
+            if (recipesDatabase == null) {
+                // Erstelle die Datenbankinstanz, wenn sie noch nicht existiert.
                 recipesDatabase = Room.databaseBuilder(
-                        context,
-                        RecipeDatabase::class.java,
-                        "recipe.db"
+                    context.applicationContext,
+                    RecipeDatabase::class.java,
+                    "recipe.db"
                 ).build()
             }
             return recipesDatabase!!
         }
     }
 
-    abstract fun recipeDao():RecipeDao
+    // Abstrakte Methode, um das Data Access Object (DAO) für die Datenbank zurückzugeben.
+    abstract fun recipeDao(): RecipeDao
 }
