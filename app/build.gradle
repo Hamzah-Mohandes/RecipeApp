@@ -19,8 +19,9 @@ android {
     compileSdkVersion 33
 
     // The version of build tools to use
-    buildToolsVersion "30.0.1"
-
+    buildFeatures {
+        viewBinding = true
+    }
     // Default configuration for the application
     defaultConfig {
         // Application package name
@@ -55,22 +56,18 @@ android {
 
     // Java compatibility settings
     compileOptions {
-        // Source compatibility with Java 8
-        sourceCompatibility JavaVersion.VERSION_1_8
-
-        // Target compatibility with Java 8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
-
-    // Kotlin compatibility settings
     kotlinOptions {
-        // JVM target version for Kotlin code
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
+    namespace 'com.codingwithme.recipeapp'
 }
 
 // Dependencies section
 dependencies {
+
     // Kotlin standard library
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
